@@ -51,17 +51,8 @@ def get_vm_id():
     return vm_id, c_id
 
 
-def get_cpuinfo():
-    buf = "".join(open("/proc/cpuinfo").readlines())
-    cpu_info = buf.replace("\n", ";").replace("\t", "")
-    cpu_info = cpu_info.split(';')[model_name_index].split(':')[value_index].lstrip(' ')
-    return cpu_info
-
-
 def lambda_handler(event, context):
     r_id, c_id = get_vm_id()
-
-    cpu_model_name = get_cpuinfo()
 
     send_mbit_s, recv_mbit_s = network_test(event['server_ip_addr'], event['port'])
 
@@ -70,7 +61,6 @@ def lambda_handler(event, context):
           'r_id': {'S': r_id},
           'timestamp': {'N': str(int(time.time()) + random.randrange(1, 100))},
           'c_id': {'S': c_id},
-          'cpu_model_name': {'S': cpu_model_name},
           'lambda_mem_limit': {'S': context.memory_limit_in_mb},
           'port': {'S': str(event['port'])},
           'send_mbit_per_sec': {'S': str(send_mbit_s)},
