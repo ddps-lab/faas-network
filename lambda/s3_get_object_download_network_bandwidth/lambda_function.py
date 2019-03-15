@@ -24,6 +24,18 @@ def get_vm_id():
     return vm_id, c_id
 
 
+def get_network_bandwidth():
+    with open('/proc/net/dev', 'r') as dev:
+        lines = dev.readlines()
+        for line in lines:
+            if 'vinternal' in str(line):
+                line = line.split(' ')
+                info = filter(str.isdigit, line)
+                recv = int(info[recv_index])
+                send = int(info[send_index])
+                return recv, send
+
+
 def lambda_handler(event, context):
     bucket = event['bucket']
     key = event['key']
