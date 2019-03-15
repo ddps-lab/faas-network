@@ -10,10 +10,6 @@ model_name_index = 4
 value_index = 1
 
 
-def run_cmd(cmd):
-    return os.popen(cmd).read().strip("\n")
-
-
 def network_test(server_ip, port):
     sp = subprocess.Popen(["./iperf3",
                            "-c",
