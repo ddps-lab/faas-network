@@ -35,13 +35,13 @@ To understand the network performance of FaaS under realistic scenario, we perfo
 <img src="https://user-images.githubusercontent.com/10591350/57977932-550cb280-7a3d-11e9-8baa-833b8e28d5c8.png" width="400">
 
 ### lambda s3 download
-[s3_get_object_download_network_bandwidth](https://github.com/kmu-bigdata/faas-network/blob/master/lambda/s3_get_object_download_network_bandwidth/lambda_function.py)
-lambda input
- - object : s3_object_key
- - key : download_file_name
+ - code : [s3_get_object_download_network_bandwidth](https://github.com/kmu-bigdata/faas-network/blob/master/lambda/s3_get_object_download_network_bandwidth/lambda_function.py)
+ - lambda input
+   - object : s3_object_key
+   - key : download_file_name
  
  ### lambda s3 download
-[s3_put_object_upload_network_bandwidth](https://github.com/kmu-bigdata/faas-network/blob/master/lambda/s3_put_object_upload_network_bandwidth/lambda_function.py)
-lambda input
- - object : s3_object_key
- - key : download_file_name
+ - code : [s3_put_object_upload_network_bandwidth](https://github.com/kmu-bigdata/faas-network/blob/master/lambda/s3_put_object_upload_network_bandwidth/lambda_function.py)
+ - lambda input
+   - object : s3_object_key
+   - key : download_file_name
