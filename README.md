@@ -10,9 +10,9 @@ iperf3 is widely used as a network micro-benchmark.
  - Configure your Security Group(5201 port - iperf3 server default port)
  - Check your EC2 internal-ip (ex : 172.31.XX.XX)
  - Install iperf3 
-   $ sudo yum -y install iperf3
+   - $ sudo yum -y install iperf3
  - Server start
-   $ iperf3 -s 
+   - $ iperf3 -s 
  - If you want to multiple test(concurrent exeuction), executed this [code](https://github.com/kmu-bigdata/faas-network/blob/master/ec2/iperf3_server/restart_iperf_server.sh)
 
 ### Lambda(iperf3 client)
