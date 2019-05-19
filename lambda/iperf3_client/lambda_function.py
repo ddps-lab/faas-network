@@ -1,8 +1,7 @@
-import os
+import boto3
 import subprocess
 import time
 import json
-import boto3
 import random
 
 dynamodb = boto3.client('dynamodb')
@@ -56,7 +55,12 @@ def lambda_handler(event, context):
 
     send_mbit_s, recv_mbit_s = network_test(event['server_ip_addr'], event['port'])
 
-    dynamodb.put_item(TableName='concurrent_execution',
+    """
+    DynamoDB Table
+     - partition key -> r_id(String)
+     - sort_key -> timestamp(Number)
+    """
+    dynamodb.put_item(TableName='[YOUR_DYNAMODB_TABLE_NAME]',
         Item={
           'r_id': {'S': r_id},
           'timestamp': {'N': str(int(time.time()) + random.randrange(1, 100))},
