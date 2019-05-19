@@ -9,15 +9,19 @@ model_name_index = 4
 value_index = 1
 
 
-def network_test(server_ip, port):
+def network_test(server_ip, server_port, test_time, reverse):
+    reverse_option = ""
+    if reverse:
+        reverse_option = "R"
+
     sp = subprocess.Popen(["./iperf3",
                            "-c",
                            server_ip,
                            "-p",
-                           str(port),
-                           "-R",
+                           str(server_port),
+                           reverse_option,
                            "-t",
-                           "10",
+                           test_time,
                            "-Z",
                            "-J"
                            ],
@@ -51,9 +55,14 @@ def get_vm_id():
 
 
 def lambda_handler(event, context):
+    server_ip = event['server_ip']
+    server_port = event['server_port']
+    test_time = event['test_time']
+    reverse = event['reverse']
+
     r_id, c_id = get_vm_id()
 
-    send_mbit_s, recv_mbit_s = network_test(event['server_ip_addr'], event['port'])
+    send_mbit_s, recv_mbit_s = network_test(server_ip, server_port, test_time, reverse)
 
     """
     DynamoDB Table
