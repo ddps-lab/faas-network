@@ -61,3 +61,6 @@ To understand the network performance of FaaS under realistic scenario, we perfo
     "key": [UPLOAD_OBJECT_KEY]
 }
 ```
+
+## Concurrent execution using EC2 Docker
+<img src="https://user-images.githubusercontent.com/10591350/57978265-a4a2ac80-7a44-11e9-8b99-cd40f5fe9e8d.png" width="400">
