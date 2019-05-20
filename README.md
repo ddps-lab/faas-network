@@ -21,7 +21,15 @@ iperf3 is widely used as a network micro-benchmark.
  - Using iperf3 command, we can let a client (function run-time) work as either a data uploader (default option) or downloader (with -R oprtion).
  - Lambda code(single test) : [iperf3_client](https://github.com/kmu-bigdata/faas-network/tree/master/lambda/iperf3_client)
  - Lambda Invocation code(concurrent test) : [invoke_iperf3_concurrent_execution](https://github.com/kmu-bigdata/faas-network/blob/master/lambda/invoke_iperf3_concurrent_execution/lambda_function.py)
-
+ - Lambda input : 
+ ```json
+ {
+    "server_ip": [SERVER_IP],
+    "server_port": [SERVER_PORT],
+    "test_time": [NUMBER_OF_TEST_TIME],
+    "reverse" : [REVERSE_OPTION] 
+ }
+ ```
 ### single test
 <img src="https://user-images.githubusercontent.com/10591350/57977928-41614c00-7a3d-11e9-9692-99a66591ddbc.png" width="400">
 
@@ -36,12 +44,23 @@ To understand the network performance of FaaS under realistic scenario, we perfo
 
 ### lambda s3 download
  - code : [s3_get_object_download_network_bandwidth](https://github.com/kmu-bigdata/faas-network/blob/master/lambda/s3_get_object_download_network_bandwidth/lambda_function.py)
- - lambda input
-   - object : s3_object_key
-   - key : download_file_name
- 
+ - Lambda input
+```json
+{
+    "object": [S3_BUCKET_NAME],
+    "key": [DOWNLOAD_OBJECT_KEY]
+}
+```
  ### lambda s3 download
  - code : [s3_put_object_upload_network_bandwidth](https://github.com/kmu-bigdata/faas-network/blob/master/lambda/s3_put_object_upload_network_bandwidth/lambda_function.py)
- - lambda input
-   - object : s3_object_key
-   - key : download_file_name
+ - Lambda input
+```json
+{
+    "src_object": [SOURCE_S3_BUCKET_NAME],
+    "dst_object": [DESTINATION_S3_BUCKET_NAME],
+    "key": [UPLOAD_OBJECT_KEY]
+}
+```
+
+## Concurrent execution using EC2 Docker
+<img src="https://user-images.githubusercontent.com/10591350/57978265-a4a2ac80-7a44-11e9-8b99-cd40f5fe9e8d.png" width="400">
