@@ -64,3 +64,15 @@ To understand the network performance of FaaS under realistic scenario, we perfo
 
 ## Concurrent execution using EC2 Docker
 <img src="https://user-images.githubusercontent.com/10591350/57978265-a4a2ac80-7a44-11e9-8b99-cd40f5fe9e8d.png" width="400">
+
+### EC2 setup
+- Start your EC2 instance
+- Install Docker 
+  - $ sudo yum -y install docker
+  - $ sudo service docker start
+  - $ sudo usermod -aG docker ec2-user
+- Start Network Orchestrator
+  1. Copy [downloader](https://github.com/kmu-bigdata/faas-network/blob/master/ec2/network_orchestrator/download.js) and [uploader](https://github.com/kmu-bigdata/faas-network/blob/master/ec2/network_orchestrator/upload.js) to tmp filesystem(/tmp/)
+  2. Start [orchestrator](https://github.com/kmu-bigdata/faas-network/blob/master/ec2/network_orchestrator/orchestrator.js) $ node orchestrator.js
+  3. Start [driver](https://github.com/kmu-bigdata/faas-network/blob/master/ec2/network_orchestrator/driver.js) $ node driver.js [NUMBER_OF_DOWNLOADER_CONTAINER] [NUMBER_OF_FILE]
+  
